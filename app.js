@@ -182,6 +182,7 @@ els.grid.addEventListener('drop', (e) => {
 els.clearAll.addEventListener('click', reset);
 els.restartBtn.addEventListener('click', reset);
 els.backBtn.addEventListener('click', () => showView('workspace'));
+els.downloadBtn.addEventListener('click', () => toast('Download started'));
 
 function reset() {
   items.forEach((it) => URL.revokeObjectURL(it.url));
@@ -348,8 +349,7 @@ els.convertBtn.addEventListener('click', async () => {
     els.downloadBtn.download = name;
     els.resultInfo.textContent = `${name} · ${pages.length} page${pages.length === 1 ? '' : 's'} · ${formatSize(blob.size)}`;
     showView('success');
-    els.downloadBtn.click(); // start the download automatically
-    toast('Download started');
+    els.downloadBtn.focus();
   } catch (err) {
     console.error(err);
     toast('Something went wrong: ' + err.message);
